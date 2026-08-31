@@ -1,0 +1,108 @@
+using api.Controllers.Helper;
+using api.DTOs;
+using api.InterFaces;
+using api.Models;
+using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+
+namespace api.Controllers;
+
+public class PharmacyAccountController(IPharmacyAccountRepository pharmacyAccountRepository) : BaseApiController
+{
+    [HttpPost("register")]
+    public async Task<ActionResult<PharmacyLoggedInDto>> RegisterPharmacy(Pharmacy userInput, CancellationToken cancellationToken)
+    {
+        if (userInput.Password != userInput.ConfirmPassword)
+        {
+            return BadRequest("Your passwords do not match!");
+        }
+
+        PharmacyLoggedInDto? pharmacyLoggedInDto = await pharmacyAccountRepository.RegisterPharmacyAsync(userInput, cancellationToken);
+
+        if (pharmacyLoggedInDto is null)
+        {
+            return BadRequest("This LicenseNumber is already exist!");
+        }
+
+        return pharmacyLoggedInDto;
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<PharmacyLoggedInDto>> LoginPharmacy(PharmacyLoginDtp userInput, CancellationToken cancellationToken)
+    {
+        PharmacyLoggedInDto? pharmacyLoggedInDto = await pharmacyAccountRepository.LoginPharmacyAsync(userInput, cancellationToken);
+
+        if (pharmacyLoggedInDto is null)
+        {
+            return Unauthorized("Name or LicenseNumber or Password is wrong");
+        }
+
+        return pharmacyLoggedInDto;
+    }
+
+
+    public async Task<ActionResult<List<PharmacyLoggedInDto>>> GetAllPharmacy(CancellationToken cancellationToken)
+    {
+        List<Pharmacy>? pharmacies = await pharmacyAccountRepository.GetAllPharmacyAsync(cancellationToken);
+
+        if (pharmacies is null)
+        {
+            return NoContent();
+        }
+
+        List<PharmacyLoggedInDto> pharmacyLoggedInDtos = [];
+
+        foreach (Pharmacy pharmacy in pharmacies)
+        {
+            PharmacyLoggedInDto pharmacyLoggedInDto = new PharmacyLoggedInDto(
+                Name: pharmacy.Name,
+                PharmacistName: pharmacy.PharmacistName
+            );
+
+            pharmacyLoggedInDtos.Add(pharmacyLoggedInDto);
+        }
+
+        return pharmacyLoggedInDtos;
+    }
+
+    [HttpGet("get-by-City/{userInput}")]
+    public async Task<ActionResult<PharmacyMemberDto>> GetByCity(string userInput, CancellationToken cancellationToken)
+    {
+        PharmacyMemberDto? pharmacyMemberDto = await pharmacyAccountRepository.GetByCityAsync(userInput, cancellationToken);
+
+        if (pharmacyMemberDto is null)
+        {
+            return NotFound("pharmacy not found!");
+        }
+
+        return pharmacyMemberDto;
+    }
+
+    [HttpPut("update-by-id/{userId}")]
+    public async Task<ActionResult<PharmacyMemberDto>> UpdatePharmacyById(string userId, Pharmacy userInput, CancellationToken cancellationToken)
+    {
+        PharmacyMemberDto? pharmacyMemberDto = await pharmacyAccountRepository.UpdatePharmacyByIdAsync(userId, userInput, cancellationToken);
+
+        if (pharmacyMemberDto is null)
+        {
+            return BadRequest("Operation Failed!");
+
+        }
+
+        return pharmacyMemberDto;
+    }
+    
+    [HttpDelete("delete-by-id/{userId}")]
+    public async Task<ActionResult<DeleteResult>> DeletePharmacyById(string userId, CancellationToken cancellationToken)
+    {
+        DeleteResult? Result = await pharmacyAccountRepository.DeletePharmacyByIdAsync(userId, cancellationToken);
+
+        if (Result is null)
+        {
+            return NotFound("User not found");
+
+        }
+
+        return Result;
+    }
+}
