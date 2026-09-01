@@ -12,9 +12,8 @@ public record Medicine
     string Dosage,
     string ManuFacturer,
     string CountryOfOrigin,
-    string Price,
-    string Inventory,
-    bool RequiresPrescription
+    bool RequiresPrescription,
+    PharmacyMadicine PharmacyMadicine
 );
 /*
 اسم عمومی
@@ -23,7 +22,5 @@ public record Medicine
 دوز دارو
 شرکت سازنده
 کشور سازنده
-قیمت کالا
-موجودی کالا
 آیا برای خرید نیاز به نسخه دارد
 */

@@ -8,7 +8,6 @@ public record MedicineInformationDto
     string Dosage,
     string ManuFacturer,
     string CountryOfOrigin,
-    string Price,
-    string Inventory,
-    bool RequiresPrescription
+    bool RequiresPrescription,
+    PharmacyMedicineDto PharmacyMedicine
 );

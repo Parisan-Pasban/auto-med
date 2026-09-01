@@ -37,9 +37,11 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             Dosage: userInput.Dosage,
             ManuFacturer: userInput.ManuFacturer,
             CountryOfOrigin: userInput.CountryOfOrigin,
-            Price: userInput.Price,
-            Inventory: userInput.Inventory,
-            RequiresPrescription: userInput.RequiresPrescription
+            RequiresPrescription: userInput.RequiresPrescription,
+            PharmacyMedicine: new PharmacyMedicineDto(
+                Price: userInput.PharmacyMadicine.Price,
+                Inventory: userInput.PharmacyMadicine.Inventory
+            )
         );
 
         return medicineInformationDto;
@@ -73,9 +75,11 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             Dosage: medicine.Dosage,
             ManuFacturer: medicine.ManuFacturer,
             CountryOfOrigin: medicine.CountryOfOrigin,
-            Price: medicine.Price,
-            Inventory: medicine.Inventory,
-            RequiresPrescription: medicine.RequiresPrescription
+            RequiresPrescription: medicine.RequiresPrescription,
+            PharmacyMedicine: new PharmacyMedicineDto(
+                Price: medicine.PharmacyMadicine.Price,
+                Inventory: medicine.PharmacyMadicine.Inventory
+            )
         );
 
         return medicineInformationDto;
@@ -97,9 +101,11 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             Dosage: medicine.Dosage,
             ManuFacturer: medicine.ManuFacturer,
             CountryOfOrigin: medicine.CountryOfOrigin,
-            Price: medicine.Price,
-            Inventory: medicine.Inventory,
-            RequiresPrescription: medicine.RequiresPrescription
+            RequiresPrescription: medicine.RequiresPrescription,
+            PharmacyMedicine: new PharmacyMedicineDto(
+                Price: medicine.PharmacyMadicine.Price,
+                Inventory: medicine.PharmacyMadicine.Inventory
+            )
         );
 
         return medicineInformationDto;
@@ -114,15 +120,15 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             return null;
         }
 
-        if (medicine.Form == userInput.Form && medicine.Dosage == userInput.Dosage && medicine.Price == userInput.Price && medicine.Inventory == userInput.Inventory)
+        if (medicine.Form == userInput.Form && medicine.Dosage == userInput.Dosage && medicine.PharmacyMadicine.Price == userInput.PharmacyMadicine.Price && medicine.PharmacyMadicine.Inventory == userInput.PharmacyMadicine.Inventory)
         {
             return null;
         }
 
         UpdateDefinition<Medicine> updateDef = Builders<Medicine>.Update.Set(doc => doc.Form, userInput.Form)
         .Set(doc => doc.Dosage, userInput.Dosage)
-        .Set(doc => doc.Price, userInput.Price)
-        .Set(doc => doc.Inventory, userInput.Inventory);
+        .Set(doc => doc.PharmacyMadicine.Price, userInput.PharmacyMadicine.Price)
+        .Set(doc => doc.PharmacyMadicine.Inventory, userInput.PharmacyMadicine.Inventory);
 
         UpdateResult Result = await _collection.UpdateOneAsync(doc => doc.Id == userId, updateDef, null, cancellationToken);
 
@@ -141,9 +147,11 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             Dosage: medicine.Dosage,
             ManuFacturer: medicine.ManuFacturer,
             CountryOfOrigin: medicine.CountryOfOrigin,
-            Price: medicine.Price,
-            Inventory: medicine.Inventory,
-            RequiresPrescription: medicine.RequiresPrescription
+            RequiresPrescription: medicine.RequiresPrescription,
+            PharmacyMedicine: new PharmacyMedicineDto(
+                Price: medicine.PharmacyMadicine.Price,
+                Inventory: medicine.PharmacyMadicine.Inventory
+            )
         );
 
         return medicineInformationDto;

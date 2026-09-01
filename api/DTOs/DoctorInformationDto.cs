@@ -1,4 +1,5 @@
 namespace api.DTOs;
+
 public record DoctorInformationDto
 (
     string FirstName,
