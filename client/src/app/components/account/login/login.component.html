@@ -1,1 +1,28 @@
-<p>login works!</p>
+<section>
+    <form>
+        <h1>Login Your Accounnt</h1>
+
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" [formControl]="FirstNameCtrl" matInput placeholder="Enter Your First Name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" [formControl]="LastNameCtrl" matInput placeholder="Enter Your Last Name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" [formControl]="PasswordCtrl" matInput placeholder="Enter Your Password" />
+        </mat-form-field>
+
+        <button (click)="login()" mat-raised-button [disabled]="loginFg.invalid">login</button>
+
+        <p>
+            userName: {{ userRes?.firstName }}
+            <br>
+            age: {{ userRes?.lastName }}
+        </p>
+    </form>
+</section>

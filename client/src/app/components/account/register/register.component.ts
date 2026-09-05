@@ -1,13 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Inject, inject } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { AppUser } from '../../../models/app-user.model';
-import { AccountService } from '../../../services/account.service';
 import { LoggedIn } from '../../../models/logged-in.model';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppUser } from '../../../models/app-user.model';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatDatepickerModule
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -118,6 +133,7 @@ export class RegisterComponent {
       birthDate: this.BirthDateCtrl.value,
       bloodGroup: this.BloodGroupCtrl.value
     }
+    
     this.accountService.register(appUser).subscribe({
       next: (res: LoggedIn) => {
         console.log(res);
