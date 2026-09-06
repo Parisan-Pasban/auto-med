@@ -18,16 +18,18 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+            <mat-label>National Code</mat-label>
+            <input type="text" [formControl]="NationalCodeCtrl" matInput placeholder="Enter Your National Code" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input type="text" [formControl]="PhoneNumberCtrl" matInput placeholder="Enter Your Phone Number" />
         </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [formControl]="BirthDateCtrl" placeholder="Enter Your Birth Date">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+        <mat-form-field appearance="outline">
+            <mat-label>Birth Date</mat-label>
+            <input type="text" [formControl]="BirthDateCtrl" matInput placeholder="Enter Your Birth Date" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -43,9 +45,10 @@
         <button (click)="register()" mat-raised-button>Register</button>
 
         <p>
-            userName: {{ userRes?.firstName }}
+            First Name: {{ userRes?.firstName }}
             <br>
-            age: {{ userRes?.lastName }}
+            Last Name: {{ userRes?.lastName }}
         </p>
+
     </form>
 </section>

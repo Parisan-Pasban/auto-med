@@ -8,7 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AccountService } from '../../../services/account.service';
 
 @Component({
@@ -20,8 +19,7 @@ import { AccountService } from '../../../services/account.service';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule
+    MatRadioModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -29,7 +27,7 @@ import { AccountService } from '../../../services/account.service';
 export class RegisterComponent {
   http = inject(HttpClient);
   fB = inject(FormBuilder);
-  accountService = Inject(AccountService);
+  accountService = inject(AccountService);
 
   userRes: LoggedIn | undefined;
 
@@ -133,7 +131,7 @@ export class RegisterComponent {
       birthDate: this.BirthDateCtrl.value,
       bloodGroup: this.BloodGroupCtrl.value
     }
-    
+
     this.accountService.register(appUser).subscribe({
       next: (res: LoggedIn) => {
         console.log(res);

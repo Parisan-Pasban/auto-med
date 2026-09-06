@@ -11,7 +11,7 @@ import { Login } from '../models/login.model';
 export class AccountService {
   private _http = inject(HttpClient);
 
-  private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount'
+  private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount/'
 
   register(userInput: AppUser): Observable<LoggedIn> {
     let result$ = this._http.post<LoggedIn>(this._BaseApiUrl + 'register', userInput);
