@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
 
-public class DoctorMemBerController(IDoctorMemberRepository doctorMemberRepository) : BaseApiController
+public class DoctorMemberController(IDoctorMemberRepository doctorMemberRepository) : BaseApiController
 {
     [HttpGet("get-all")]
     public async Task<ActionResult<List<LoggedInDto>>> GetAllDoctor(CancellationToken cancellationToken)

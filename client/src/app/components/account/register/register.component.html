@@ -42,13 +42,6 @@
             <input type="text" [formControl]="ConfirmPasswordCtrl" matInput placeholder="Enter Your Confirm Password" />
         </mat-form-field>
 
-        <button (click)="register()" mat-raised-button>Register</button>
-
-        <p>
-            First Name: {{ userRes?.firstName }}
-            <br>
-            Last Name: {{ userRes?.lastName }}
-        </p>
-
+        <button (click)="register()" mat-raised-button routerLink="/">Register</button>
     </form>
 </section>

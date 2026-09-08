@@ -4,6 +4,7 @@ import { AppUser } from '../models/app-user.model';
 import { Observable } from 'rxjs';
 import { LoggedIn } from '../models/logged-in.model';
 import { Login } from '../models/login.model';
+import { DoctorInformation } from '../models/doctor-information.modei';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,19 @@ export class AccountService {
   private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount/'
 
   register(userInput: AppUser): Observable<LoggedIn> {
-    let result$ = this._http.post<LoggedIn>(this._BaseApiUrl + 'register', userInput);
+    let result$: Observable<LoggedIn> = this._http.post<LoggedIn>(this._BaseApiUrl + 'register', userInput);
 
     return result$;
   }
 
   login(userInput: Login): Observable<LoggedIn> {
-    let result$ = this._http.post<LoggedIn>(this._BaseApiUrl + 'login', userInput);
+    let result$: Observable<LoggedIn> = this._http.post<LoggedIn>(this._BaseApiUrl + 'login', userInput);
+
+    return result$;
+  }
+
+  getAll(): Observable<DoctorInformation[]> {
+    let result$: Observable<DoctorInformation[]> = this._http.get<DoctorInformation[]>('http://localhost:5000/api/doctormember/get-all',);
 
     return result$;
   }

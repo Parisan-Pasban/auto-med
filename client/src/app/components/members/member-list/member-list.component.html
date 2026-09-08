@@ -1,1 +1,11 @@
-<p>member-list works!</p>
+@for (doctor of doctors; track $index) {
+<div class="card">
+    <span>{{doctor.firstName}}</span>
+    <span>{{doctor.lastName}}</span>
+    <span>{{doctor.gender}}</span>
+    <span>{{doctor.phoneNumber}}</span>
+    <span>{{doctor.Specialty}}</span>
+    <span>{{doctor.clinicName}}</span>
+    <span>{{doctor.clinicAddres}}</span>
+</div>
+}
