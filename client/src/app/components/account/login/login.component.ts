@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormBuilder, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,7 +22,7 @@ import { RouterLink } from "@angular/router";
     MatButtonModule,
     MatRadioModule,
     RouterLink
-],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -35,9 +35,9 @@ export class LoginComponent {
 
   // #region loginFg
   loginFg = this.fb.group({
-    firstNameCtrl: '',
-    lastNameCtrl: '',
-    passwordCtrl: ''
+    firstNameCtrl: ['', Validators.required],
+    lastNameCtrl: ['', Validators.required],
+    passwordCtrl: ['', Validators.required]
   });
 
   get FirstNameCtrl(): FormControl {
@@ -62,8 +62,12 @@ export class LoginComponent {
 
     this.accountService.login(login).subscribe({
       next: (res: LoggedIn) => {
-        console.log(res);
+        let userIn = JSON.stringify(res);
 
+        localStorage.setItem('userInput:', userIn);
+
+        console.log(res);
+        
         this.userRes = res;
       }
     });

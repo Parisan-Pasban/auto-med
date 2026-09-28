@@ -9,7 +9,7 @@ namespace api.Controllers;
 public class DoctorMemberController(IDoctorMemberRepository doctorMemberRepository) : BaseApiController
 {
     [HttpGet("get-all")]
-    public async Task<ActionResult<List<LoggedInDto>>> GetAllDoctor(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<DoctorInformationDto>>> GetAllDoctor(CancellationToken cancellationToken)
     {
         List<AppDoctor>? appDoctors = await doctorMemberRepository.GetAllDoctorAsync(cancellationToken);
 
@@ -18,19 +18,33 @@ public class DoctorMemberController(IDoctorMemberRepository doctorMemberReposito
             return NotFound();
         }
 
-        List<LoggedInDto> loggedInDtos = [];
+        List<DoctorInformationDto> doctorInformationDtos = [];
 
         foreach (AppDoctor doctor in appDoctors)
         {
-            LoggedInDto loggedInDto = new LoggedInDto(
+            DoctorInformationDto doctorInformationDto = new DoctorInformationDto(
                 FirstName: doctor.Information.FirstName,
-                LastName: doctor.Information.LastName
+                LastName: doctor.Information.LastName,
+                Gender: doctor.Information.Gender,
+                PhoneNumber: doctor.Information.PhoneNumber,
+                Specialty: doctor.Specialty,
+                ClinicName: doctor.ClinicName,
+                ClinicNumber: doctor.ClinicNumber,
+
+                ClinicAddress: new AddressDto
+                (
+                     City: doctor.ClinicAddress.City,
+                    Street: doctor.ClinicAddress.Street,
+                    Alley: doctor.ClinicAddress.Alley,
+                    Plaque: doctor.ClinicAddress.Plaque,
+                    Unit: doctor.ClinicAddress.Unit
+                )
             );
 
-            loggedInDtos.Add(loggedInDto);
+            doctorInformationDtos.Add(doctorInformationDto);
         }
 
-        return loggedInDtos;
+        return doctorInformationDtos;
     }
 
     [HttpGet("get-by-lastname/{userInput}")]

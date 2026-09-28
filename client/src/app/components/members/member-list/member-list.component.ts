@@ -2,10 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AccountService } from '../../../services/account.service';
 import { DoctorInformation } from '../../../models/doctor-information.modei';
 import { Observable } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-member-list',
-  imports: [],
+  imports: [MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss'
 })

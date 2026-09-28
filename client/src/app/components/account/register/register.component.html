@@ -42,6 +42,6 @@
             <input type="text" [formControl]="ConfirmPasswordCtrl" matInput placeholder="Enter Your Confirm Password" />
         </mat-form-field>
 
-        <button (click)="register()" mat-raised-button routerLink="/">Register</button>
+        <button (click)="register()" mat-raised-button [disabled]="registerFg.invalid" routerLink="/">Register</button>
     </form>
 </section>

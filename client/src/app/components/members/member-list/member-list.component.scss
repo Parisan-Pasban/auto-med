@@ -1,9 +1,86 @@
-.card {
-    background-color: paleturquoise;
+$card_size: 12rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-    gap: 2rem;
+.container {
+    text-align: center;
+
+    .doctors-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+
+        .card {
+            max-width: $card_size;
+
+            .card-img {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+
+                img {
+                    height: $card_size;
+                    width: $card_size;
+                    border-radius: 15px;
+
+                    transition-duration: 500ms;
+                    transition-timing-function: ease-out;
+                }
+
+                &:hover {
+                    img {
+                        transform: scale(1.2);
+                        transition-duration: 500ms;
+                        transition-timing-function: ease-out;
+                        opacity: 0.7;
+                    }
+
+                    .doctor-icons {
+                        bottom: 0.5rem;
+                    }
+                }
+
+                .doctor-icons {
+                    position: absolute;
+                    bottom: -30%;
+                    display: flex;
+                    min-width: $card_size;
+                    gap: 2px;
+                    margin: 0;
+                    padding: 0;
+                    justify-content: space-evenly;
+                    list-style-type: none;
+
+                    transition: all 0.3s ease-in-out;
+
+                    li {
+                        transition: all 200ms ease-out;
+
+                        &:hover {
+                            transform: scale(1.3);
+                            transition: all 200ms ease-out;
+                        }
+
+                        button {
+                            background-color: #fff;
+                        }
+
+                        .first {
+                            color: rgb(0, 115, 192);
+                        }
+
+                        .second {
+                            color: rgb(0, 115, 192);
+                        }
+
+                        .third {
+                            color: rgb(0, 115, 192);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 import { Component, Inject, inject } from '@angular/core';
 import { LoggedIn } from '../../../models/logged-in.model';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppUser } from '../../../models/app-user.model';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import { RouterLink } from "@angular/router";
     MatButtonModule,
     MatRadioModule,
     RouterLink
-],
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -36,22 +36,22 @@ export class RegisterComponent {
   // #region registerFg
   registerFg = this.fB.group({
     information: this.fB.group({
-      firstNameCtrl: '',
-      lastNameCtrl: '',
-      nationalCodeCtrl: '',
-      genderCtrl: '',
-      phoneNumberCtrl: '',
-      passwordCtrl: '',
-      confirmPasswordCtrl: ''
+      firstNameCtrl: ['', Validators.required],
+      lastNameCtrl: ['', Validators.required],
+      nationalCodeCtrl: ['', Validators.required],
+      genderCtrl: ['', Validators.required],
+      phoneNumberCtrl: ['', Validators.required],
+      passwordCtrl: ['', Validators.required],
+      confirmPasswordCtrl: ['', Validators.required]
     }),
     address: this.fB.group({
-      cityCtrl: '',
+      cityCtrl: ['', Validators.required],
       streetCtrl: '',
       alleyCtrl: '',
       plaqueCtrl: '',
       unitCtrl: ''
     }),
-    birthDateCtrl: '',
+    birthDateCtrl: ['', Validators.required],
     bloodGroupCtrl: ''
   });
 
@@ -136,6 +136,10 @@ export class RegisterComponent {
 
     this.accountService.register(appUser).subscribe({
       next: (res: LoggedIn) => {
+        let userIn = JSON.stringify(res);
+
+        localStorage.setItem('userInput:', userIn);
+
         console.log(res);
 
         this.userRes = res;
