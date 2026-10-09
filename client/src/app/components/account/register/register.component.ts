@@ -31,27 +31,27 @@ export class RegisterComponent {
   fB = inject(FormBuilder);
   accountService = inject(AccountService);
 
-  userRes: LoggedIn | undefined;
+  userRes: LoggedIn | undefined | null;
 
   // #region registerFg
   registerFg = this.fB.group({
     information: this.fB.group({
       firstNameCtrl: ['', Validators.required],
       lastNameCtrl: ['', Validators.required],
-      nationalCodeCtrl: ['', Validators.required],
+      nationalCodeCtrl: '',
       genderCtrl: ['', Validators.required],
       phoneNumberCtrl: ['', Validators.required],
       passwordCtrl: ['', Validators.required],
       confirmPasswordCtrl: ['', Validators.required]
     }),
     address: this.fB.group({
-      cityCtrl: ['', Validators.required],
+      cityCtrl:'',
       streetCtrl: '',
       alleyCtrl: '',
       plaqueCtrl: '',
       unitCtrl: ''
     }),
-    birthDateCtrl: ['', Validators.required],
+    birthDateCtrl:'',
     bloodGroupCtrl: ''
   });
 
@@ -135,11 +135,7 @@ export class RegisterComponent {
     }
 
     this.accountService.register(appUser).subscribe({
-      next: (res: LoggedIn) => {
-        let userIn = JSON.stringify(res);
-
-        localStorage.setItem('userInput:', userIn);
-
+      next: (res: LoggedIn | null) => {
         console.log(res);
 
         this.userRes = res;

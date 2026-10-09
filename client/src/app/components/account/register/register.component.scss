@@ -1,26 +1,64 @@
 section {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  background: white;
+}
 
-  form {
+form {
+  width: 450px;
+  padding: 35px;
+  background: white;
+  border-radius: 16px;
+
+  border: 1px solid #e1f0f5;
+  box-shadow: 0 0 25px rgba(0, 150, 180, 0.10);
+
+  h1 {
+    text-align: center;
+    color: #176b87;
+    margin-bottom: 30px;
+    font-size: 26px;
+  }
+
+  mat-radio-group {
     display: flex;
-    flex-direction: column;
+    gap: 15px;
     align-items: center;
-    gap: 1rem;
+    margin-bottom: 20px;
 
-    width: 25rem;
-
-    border: 1px solid rgb(172, 172, 172);
-    border-radius: 1rem;
-
-    padding: 1rem;
-    margin: 2rem;
-
+    span {
+      color: #39758a;
+      font-weight: 500;
+    }
   }
 
   mat-form-field {
-    min-width: 20rem;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  button {
+    width: 100%;
+    height: 46px;
+    margin-top: 10px;
+
+    border-radius: 8px;
+    border: none;
+
+    background: #168aad;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  button:hover {
+    background: #117a98;
+  }
+
+  button:disabled {
+    background: #b9d4dc;
   }
 }

@@ -6,7 +6,7 @@ export interface DoctorInformation {
     lastName: string,
     gender: string,
     phoneNumber: string,
-    Specialty: string,
+    specialty: string,
     clinicName: string,
     clinicAddres: AddressResponse;
 }

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AccountService } from '../../../services/account.service';
-import { DoctorInformation } from '../../../models/doctor-information.modei';
+import { DoctorInformation } from '../../../models/doctor-information.model';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class MemberListComponent implements OnInit {
   accountService = inject(AccountService);
+
+  // test = 'test';
 
   doctors: DoctorInformation[] | undefined;
 

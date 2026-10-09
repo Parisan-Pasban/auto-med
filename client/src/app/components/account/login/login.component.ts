@@ -31,7 +31,7 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   accountService = inject(AccountService);
 
-  userRes: LoggedIn | undefined;
+  userRes: LoggedIn | undefined | null;
 
   // #region loginFg
   loginFg = this.fb.group({
@@ -61,13 +61,13 @@ export class LoginComponent {
     }
 
     this.accountService.login(login).subscribe({
-      next: (res: LoggedIn) => {
+      next: (res: LoggedIn | null) => {
         let userIn = JSON.stringify(res);
 
         localStorage.setItem('userInput:', userIn);
 
         console.log(res);
-        
+
         this.userRes = res;
       }
     });

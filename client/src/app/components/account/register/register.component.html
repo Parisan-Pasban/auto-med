@@ -1,6 +1,6 @@
 <section>
     <form>
-        <h1>Register Your Account</h1>
+        <h1>Create Your Health Account</h1>
         <mat-radio-group aria-label="Select an option" [formControl]="GenderCtrl">
             <span>Gender:</span>
             <mat-radio-button value="female">Female</mat-radio-button>
@@ -18,18 +18,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>National Code</mat-label>
-            <input type="text" [formControl]="NationalCodeCtrl" matInput placeholder="Enter Your National Code" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
             <mat-label>Phone Number</mat-label>
             <input type="text" [formControl]="PhoneNumberCtrl" matInput placeholder="Enter Your Phone Number" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Birth Date</mat-label>
-            <input type="text" [formControl]="BirthDateCtrl" matInput placeholder="Enter Your Birth Date" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
