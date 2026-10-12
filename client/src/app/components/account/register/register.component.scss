@@ -62,3 +62,60 @@ form {
     background: #b9d4dc;
   }
 }
+
+@media screen and (max-width: 480px) {
+  section {
+    min-height: 100vh;
+    padding: 20px 12px;
+    box-sizing: border-box;
+  }
+
+  form {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 14px;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: clamp(14px, 4vw, 18px);
+      margin-bottom: 22px;
+      white-space: nowrap;
+    }
+
+    mat-radio-group {
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    mat-form-field {
+      width: 100%;
+      min-width: 0;
+    }
+
+    button {
+      height: 42px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+
+  form {
+    width: 450px;
+    max-width: 100%;
+    padding: 28px;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: 23px;
+      margin-bottom: 24px;
+      white-space: nowrap;
+    }
+  }
+}

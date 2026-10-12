@@ -89,3 +89,77 @@ $card_size: 12rem;
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+
+        h1 {
+            font-size: 20px;
+        }
+
+        .doctors-container {
+            gap: 1rem;
+            margin-top: 1rem;
+
+            .card {
+                max-width: 9rem;
+
+                .card-img {
+                    img {
+                        width: 9rem;
+                        height: 9rem;
+                    }
+
+                    .doctor-icons {
+                        min-width: 9rem;
+                        bottom: 0.5rem;
+
+                        button {
+                            width: 32px;
+                            height: 32px;
+
+                            mat-icon {
+                                width: 18px;
+                                height: 18px;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .doctors-container {
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+
+            .card {
+                max-width: 11rem;
+
+                .card-img {
+                    img {
+                        width: 11rem;
+                        height: 11rem;
+                    }
+
+                    .doctor-icons {
+                        min-width: 11rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
