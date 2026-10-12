@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { AppUser } from '../models/app-user.model';
 import { map, Observable } from 'rxjs';
 import { LoggedIn } from '../models/logged-in.model';
 import { Login } from '../models/login.model';
 import { DoctorInformation } from '../models/doctor-information.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private _http = inject(HttpClient);
+  platformId = inject(PLATFORM_ID);
 
   private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount/'
 
@@ -49,6 +51,14 @@ export class AccountService {
   }
 
   setCurrentUser(loggesInUser: LoggedIn): void {
-    localStorage.setItem('userInput', JSON.stringify(loggesInUser));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('userInput', JSON.stringify(loggesInUser));
+    }
+  }
+
+  logout(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.clear();
+    }
   }
 }
