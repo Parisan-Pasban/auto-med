@@ -9,8 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { AccountService } from '../../../services/account.service';
-import { RouterLink } from "@angular/router";
-
 @Component({
   selector: 'app-register',
   imports: [
@@ -21,7 +19,6 @@ import { RouterLink } from "@angular/router";
     MatFormFieldModule,
     MatButtonModule,
     MatRadioModule,
-    RouterLink
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

@@ -9,7 +9,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { LoggedIn } from '../../../models/logged-in.model';
 import { Login } from '../../../models/login.model';
 import { AccountService } from '../../../services/account.service';
-import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,6 @@ import { RouterLink } from "@angular/router";
     MatFormFieldModule,
     MatButtonModule,
     MatRadioModule,
-    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

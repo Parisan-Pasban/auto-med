@@ -31,6 +31,8 @@ export class AccountService {
       return null;
     }));
 
+    this.router.navigateByUrl('')
+
     return result$;
   }
 
@@ -44,6 +46,8 @@ export class AccountService {
 
       return null;
     }));
+    
+    this.router.navigateByUrl('')
 
     return result$;
   }
