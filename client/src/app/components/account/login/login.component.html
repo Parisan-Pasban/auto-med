@@ -17,6 +17,6 @@
             <input type="password" [formControl]="PasswordCtrl" matInput placeholder="Enter Your Password" />
         </mat-form-field>
 
-        <button (click)="login()" mat-raised-button [disabled]="loginFg.invalid" routerLink="/">login</button>
+        <button type="button" (click)="login()" mat-raised-button [disabled]="loginFg.invalid">Login</button>
     </form>
 </section>
