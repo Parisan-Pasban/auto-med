@@ -19,12 +19,14 @@
 
         <mat-form-field appearance="outline">
             <mat-label>NationalCode</mat-label>
-            <input type="text" [formControl]="NationalCodeCtrl" matInput placeholder="Enter Your NationalCode" />
+            <input type="text" [formControl]="NationalCodeCtrl" matInput placeholder="Enter Your NationalCode"         maxlength="10"
+        minlength="10"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Phone Number</mat-label>
-            <input type="text" [formControl]="PhoneNumberCtrl" matInput placeholder="Enter Your Phone Number" />
+            <input type="tel" [formControl]="PhoneNumberCtrl" matInput placeholder="Enter Your Phone Number"
+                maxlength="11" minlength="11" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">

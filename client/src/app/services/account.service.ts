@@ -17,7 +17,7 @@ export class AccountService {
   router = inject(Router);
   platformId = inject(PLATFORM_ID);
 
-  loggedInUserUserSig = signal<LoggedIn | null>(null)
+  loggedInUserSig = signal<LoggedIn | null>(null)
 
   private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount/'
 
@@ -69,7 +69,7 @@ getAllPharmacy(): Observable<PharmacyLoggedIn[]> {
 }
 
   setCurrentUser(loggedInUser: LoggedIn): void {
-    this.loggedInUserUserSig.set(loggedInUser);
+    this.loggedInUserSig.set(loggedInUser);
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('userInput', JSON.stringify(loggedInUser));
@@ -77,7 +77,7 @@ getAllPharmacy(): Observable<PharmacyLoggedIn[]> {
   }
 
   logout(): void {
-    this.loggedInUserUserSig.set(null);
+    this.loggedInUserSig.set(null);
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.clear();

@@ -7,7 +7,7 @@
     </section>
 
     <section class="right">
-        @if (accountService.loggedInUserUserSig(); as user) {
+        @if (accountService.loggedInUserSig(); as user) {
         <button [mat-menu-trigger-for]="appMenu" class="menu-button" mat-mini-fab>
             <span>{{user.firstName[0] | titlecase}}</span>
         </button>
@@ -17,17 +17,22 @@
         }
     </section>
     <mat-menu class="mat-menu" #appMenu>
-        @if (accountService.loggedInUserUserSig(); as user) {
+        @if (accountService.loggedInUserSig(); as user) {
         <div class="user-info">
             <div class="profile-info">
+                
+                @if (user.gender === 'female') {
+                <img src="images/female-user.jpg" alt="female">
+                } @else {
                 <img src="images/male-user.jpeg" alt="male">
+                }
             </div>
 
             <div class="details-info">
                 <span>{{user.firstName}}</span>
                 <span>{{user.lastName}}</span>
             </div>
-        </div>
+        </div>‍
         }
 
         <mat-divider></mat-divider>

@@ -24,7 +24,8 @@ public class UserMemberController(IUserMemberRepository userMemberRepository) : 
         {
             LoggedInDto loggedInDto = new LoggedInDto(
                 FirstName: user.Information.FirstName,
-                LastName: user.Information.LastName
+                LastName: user.Information.LastName,
+                Gender: user.Information.Gender
             );
 
             loggedInDtos.Add(loggedInDto);

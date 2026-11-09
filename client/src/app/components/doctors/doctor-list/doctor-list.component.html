@@ -1,41 +1,48 @@
 <section class="container">
     <h1>Choose Your Doctor</h1>
+
     <div class="doctors-container">
         @for (doctor of doctors; track $index) {
-        <mat-card class="card">
-            <div class="card-img">
-                <img src="images/male-doctor.jpg" alt="doctor">
+            <mat-card class="card">
+                <div class="card-img">
 
-                <ul class="doctor-icons">
-                    <li>
-                        <button mat-mini-fab class="first">
-                            <mat-icon>badge</mat-icon>
-                        </button>
-                    </li>
+                    @if (doctor.gender === 'female') {
+                        <img src="/images/female-doctor.jpg" alt="female doctor">
+                    } @else {
+                        <img src="/images/male-doctor.jpg" alt="male doctor">
+                    }
 
-                    <li>
-                        <button mat-mini-fab class="second">
-                            <mat-icon>thumb_up</mat-icon>
-                        </button>
-                    </li>
+                    <ul class="doctor-icons">
+                        <li>
+                            <button mat-mini-fab class="first">
+                                <mat-icon>badge</mat-icon>
+                            </button>
+                        </li>
 
-                    <li>
-                        <button mat-mini-fab class="third">
-                            <mat-icon>share</mat-icon>
-                        </button>
-                    </li>
-                </ul>
-            </div>
+                        <li>
+                            <button mat-mini-fab class="second">
+                                <mat-icon>thumb_up</mat-icon>
+                            </button>
+                        </li>
 
-            <mat-card-header>
-                <div class="title">
-                    <mat-icon>emoji_people</mat-icon>
+                        <li>
+                            <button mat-mini-fab class="third">
+                                <mat-icon>share</mat-icon>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
 
-                <mat-card-subtitle>{{doctor.specialty}}</mat-card-subtitle>
-            </mat-card-header>
+                <mat-card-header>
+                    <div class="title">
+                        <mat-icon>emoji_people</mat-icon>
+                    </div>
 
-        </mat-card>
+                    <mat-card-subtitle>
+                        {{ doctor.specialty }}
+                    </mat-card-subtitle>
+                </mat-card-header>
+            </mat-card>
         }
     </div>
 </section>
