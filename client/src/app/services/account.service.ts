@@ -7,6 +7,7 @@ import { Login } from '../models/login.model';
 import { DoctorInformation } from '../models/doctor-information.model';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { PharmacyLoggedIn } from '../models/pharmacy-logged-in.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AccountService {
   router = inject(Router);
   platformId = inject(PLATFORM_ID);
 
-  loggedInUserUserSig =  signal<LoggedIn | null>(null )
+  loggedInUserUserSig = signal<LoggedIn | null>(null)
 
   private _BaseApiUrl: string = 'http://localhost:5000/api/useraccount/'
 
@@ -46,7 +47,7 @@ export class AccountService {
 
       return null;
     }));
-    
+
     this.router.navigateByUrl('')
 
     return result$;
@@ -58,9 +59,18 @@ export class AccountService {
     return result$;
   }
 
+getAllPharmacy(): Observable<PharmacyLoggedIn[]> {
+  let result$: Observable<PharmacyLoggedIn[]> =
+    this._http.get<PharmacyLoggedIn[]>(
+      'http://localhost:5000/api/PharmacyAccount/get-all'
+    );
+
+  return result$;
+}
+
   setCurrentUser(loggedInUser: LoggedIn): void {
     this.loggedInUserUserSig.set(loggedInUser);
-    
+
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('userInput', JSON.stringify(loggedInUser));
     }
@@ -68,7 +78,7 @@ export class AccountService {
 
   logout(): void {
     this.loggedInUserUserSig.set(null);
-    
+
     if (isPlatformBrowser(this.platformId)) {
       localStorage.clear();
     }

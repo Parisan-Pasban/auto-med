@@ -1,0 +1,42 @@
+<section class="container">
+    <h1>Find Your Pharmacy</h1>
+    <div class="pharmacy-container">
+        @for (pharmacy of pharmacies; track $index) {
+        <mat-card class="card">
+            <div class="card-img">
+                <img src="images/pharmacy.jpg" alt="pharmacy">
+
+                <ul class="pharmacy-icons">
+                    <li>
+                        <button mat-mini-fab class="first">
+                            <mat-icon>badge</mat-icon>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button mat-mini-fab class="second">
+                            <mat-icon>thumb_up</mat-icon>
+                        </button>
+                    </li>
+
+
+                    <li>
+                        <button mat-mini-fab class="third">
+                            <mat-icon>share</mat-icon>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <mat-card-header>
+                <div class="title">
+                    <mat-icon>medication</mat-icon>
+                </div>
+
+                <mat-card-subtitle>{{pharmacy.name}}</mat-card-subtitle>
+
+            </mat-card-header>
+        </mat-card>
+        }
+    </div>
+</section>

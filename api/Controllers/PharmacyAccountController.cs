@@ -41,6 +41,7 @@ public class PharmacyAccountController(IPharmacyAccountRepository pharmacyAccoun
     }
 
 
+    [HttpGet("get-all")]
     public async Task<ActionResult<List<PharmacyLoggedInDto>>> GetAllPharmacy(CancellationToken cancellationToken)
     {
         List<Pharmacy>? pharmacies = await pharmacyAccountRepository.GetAllPharmacyAsync(cancellationToken);
