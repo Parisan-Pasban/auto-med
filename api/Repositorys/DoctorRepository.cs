@@ -11,7 +11,6 @@ public class DoctorRepository : IDoctorRepository
     #region Db and Token Settings
     private readonly IMongoCollection<AppDoctor> _collection;
 
-    // constructor - dependency injections
     public DoctorRepository(IMongoClient client, IMongoDbSettings dbSettings)
     {
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
@@ -35,7 +34,6 @@ public class DoctorRepository : IDoctorRepository
 
         UpdateDefinition<AppDoctor> updateDef = Builders<AppDoctor>.Update.Set(doc => doc.Email, userInput.Email)
         .Set(doc => doc.ClinicAddress, userInput.ClinicAddress)
-        .Set(doc => doc.ClinicNumber, userInput.ClinicNumber)
         .Set(doc => doc.ClinicNumber, userInput.ClinicNumber)
         .Set(doc => doc.ClinicName, userInput.ClinicName);
 
