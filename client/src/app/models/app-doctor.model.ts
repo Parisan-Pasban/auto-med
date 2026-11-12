@@ -6,7 +6,7 @@ export interface AppDoctor {
     email: string,
     medicalLicenseNumber: string,
     specialty: string,
-    yearsOfExperience: string,
+    yearsOfExperience: number,
     clinicName: string,
     clinicAddress: Address;
     clinicNumber: string

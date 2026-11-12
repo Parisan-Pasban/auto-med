@@ -9,7 +9,7 @@ public record AppDoctor(
     string Email,
     string MedicalLicenseNumber,
     string Specialty,
-    string YearsOfExperience,
+    int YearsOfExperience,
     string ClinicName,
     Address ClinicAddress,
     string ClinicNumber
