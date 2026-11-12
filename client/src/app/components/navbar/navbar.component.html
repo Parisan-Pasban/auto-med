@@ -20,11 +20,11 @@
         @if (accountService.loggedInUserSig(); as user) {
         <div class="user-info">
             <div class="profile-info">
-                
-                @if (user.gender === 'female') {
-                <img src="images/female-user.jpg" alt="female">
+
+                @if (user.gender === 'Male') {
+                    <img src="images/male-user.jpeg" alt="male">
                 } @else {
-                <img src="images/male-user.jpeg" alt="male">
+                    <img src="images/female-user.jpg" alt="female">
                 }
             </div>
 
