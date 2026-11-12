@@ -36,6 +36,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IPharmacyAccountRepository, PharmacyAccountRepository>();
 builder.Services.AddScoped<IMedicineAccountRepository, MedicineAccountRepository>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
 #region Cors: baraye ta'eede Angular HttpClient requests
 builder.Services.AddCors(options =>
