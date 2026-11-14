@@ -30,11 +30,7 @@ public class UserAccountRepository : IUserAcountRepository
 
         await _collection.InsertOneAsync(userInput, null, cancellationToken);
 
-        LoggedInDto loggedInDto = new LoggedInDto(
-            FirstName: userInput.Information.FirstName,
-            LastName: userInput.Information.LastName,
-            Gender: userInput.Information.Gender
-        );
+        LoggedInDto loggedInDto = Mappers.ConvertAppUserToLoggedInDto(userInput);
 
         return loggedInDto;
     }
@@ -51,11 +47,7 @@ public class UserAccountRepository : IUserAcountRepository
             return null;
         }
 
-        LoggedInDto loggedInDto = new LoggedInDto(
-            FirstName: appUser.Information.FirstName,
-            LastName: appUser.Information.LastName,
-            Gender: appUser.Information.Gender
-        );
+        LoggedInDto loggedInDto = Mappers.ConvertAppUserToLoggedInDto(appUser);
 
         return loggedInDto;
     }

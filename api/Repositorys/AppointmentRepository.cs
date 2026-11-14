@@ -31,14 +31,7 @@ public class AppointmentRepository : IAppointmentRepository
 
         await _collection.InsertOneAsync(userInput, null, cancellationToken);
 
-        AppointmentDto appointmentDto = new AppointmentDto(
-            Date: userInput.Date,
-            StartTime: userInput.StartTime,
-            EndTime: userInput.EndTime,
-            AppointmentDuration: userInput.AppointmentDuration,
-            BreakDuration: userInput.BreakDuration,
-            MaxPatients: userInput.MaxPatients
-        );
+        AppointmentDto appointmentDto = Mappers.ConvertAppointmentToAppointmentDto(userInput);
 
         return appointmentDto;
     }
@@ -65,14 +58,7 @@ public class AppointmentRepository : IAppointmentRepository
             return null;
         }
 
-        AppointmentDto appointmentDto = new AppointmentDto(
-            Date: appointment.Date,
-            StartTime: appointment.StartTime,
-            EndTime: appointment.EndTime,
-            AppointmentDuration: appointment.AppointmentDuration,
-            BreakDuration: appointment.BreakDuration,
-            MaxPatients: appointment.MaxPatients
-        );
+        AppointmentDto appointmentDto = Mappers.ConvertAppointmentToAppointmentDto(appointment);
 
         return appointmentDto;
     }
@@ -107,14 +93,7 @@ public class AppointmentRepository : IAppointmentRepository
             return null;
         }
 
-        AppointmentDto appointmentDto = new AppointmentDto(
-            Date: appointment.Date,
-            StartTime: appointment.StartTime,
-            EndTime: appointment.EndTime,
-            AppointmentDuration: appointment.AppointmentDuration,
-            BreakDuration: appointment.BreakDuration,
-            MaxPatients: appointment.MaxPatients
-        );
+        AppointmentDto appointmentDto = Mappers.ConvertAppointmentToAppointmentDto(appointment);
 
         return appointmentDto;
     }

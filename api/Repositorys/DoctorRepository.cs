@@ -46,22 +46,7 @@ public class DoctorRepository : IDoctorRepository
             return null;
         }
 
-        DoctorInformationDto informationDto = new DoctorInformationDto(
-           FirstName: appDoctor.Information.FirstName,
-           LastName: appDoctor.Information.LastName,
-           Gender: appDoctor.Information.Gender,
-           PhoneNumber: appDoctor.Information.PhoneNumber,
-           Specialty: appDoctor.Specialty,
-           ClinicName: appDoctor.ClinicName,
-           ClinicNumber: appDoctor.ClinicNumber,
-           ClinicAddress: new AddressDto(
-                 City: appDoctor.ClinicAddress.City,
-                Street: appDoctor.ClinicAddress.Street,
-                Alley: appDoctor.ClinicAddress.Alley,
-                Plaque: appDoctor.ClinicAddress.Plaque,
-                Unit: appDoctor.ClinicAddress.Unit
-           )
-       );
+        DoctorInformationDto informationDto = Mappers.ConvertAppDoctorToDoctorInformationDto(appDoctor, appDoctor.Information);
 
         return informationDto;
     }

@@ -42,7 +42,7 @@ public class PharmacyAccountController(IPharmacyAccountRepository pharmacyAccoun
 
 
     [HttpGet("get-all")]
-    public async Task<ActionResult<List<PharmacyLoggedInDto>>> GetAllPharmacy(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<PharmacyMemberDto>>> GetAllPharmacy(CancellationToken cancellationToken)
     {
         List<Pharmacy>? pharmacies = await pharmacyAccountRepository.GetAllPharmacyAsync(cancellationToken);
 
@@ -51,19 +51,16 @@ public class PharmacyAccountController(IPharmacyAccountRepository pharmacyAccoun
             return NoContent();
         }
 
-        List<PharmacyLoggedInDto> pharmacyLoggedInDtos = [];
+        List<PharmacyMemberDto> pharmacyMedicineDtos = [];
 
         foreach (Pharmacy pharmacy in pharmacies)
         {
-            PharmacyLoggedInDto pharmacyLoggedInDto = new PharmacyLoggedInDto(
-                Name: pharmacy.Name,
-                PharmacistName: pharmacy.PharmacistName
-            );
+            PharmacyMemberDto pharmacyMemberDto = Mappers.ConvertPharmacyToPharmacyMemberDto(pharmacy);
 
-            pharmacyLoggedInDtos.Add(pharmacyLoggedInDto);
+            pharmacyMedicineDtos.Add(pharmacyMemberDto);
         }
 
-        return pharmacyLoggedInDtos;
+        return pharmacyMedicineDtos;
     }
 
     [HttpGet("get-by-City/{userInput}")]
@@ -92,7 +89,7 @@ public class PharmacyAccountController(IPharmacyAccountRepository pharmacyAccoun
 
         return pharmacyMemberDto;
     }
-    
+
     [HttpDelete("delete-by-id/{userId}")]
     public async Task<ActionResult<DeleteResult>> DeletePharmacyById(string userId, CancellationToken cancellationToken)
     {

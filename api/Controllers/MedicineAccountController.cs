@@ -38,19 +38,7 @@ public class MedicineAccountController(IMedicineAccountRepository medicineAccoun
 
         foreach (Medicine medicine in medicines)
         {
-        MedicineInformationDto medicineInformationDto = new MedicineInformationDto(
-            GenericName: medicine.GenericName,
-            BrandName: medicine.BrandName,
-            Form: medicine.Form,
-            Dosage: medicine.Dosage,
-            ManuFacturer: medicine.ManuFacturer,
-            CountryOfOrigin: medicine.CountryOfOrigin,
-            RequiresPrescription: medicine.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: medicine.PharmacyMadicine.Price,
-                Inventory: medicine.PharmacyMadicine.Inventory
-            )
-        );
+            MedicineInformationDto medicineInformationDto = Mappers.ConvertMedicineToMedicineInformationDto(medicine);
 
             medicineInformationDtos.Add(medicineInformationDto);
         }

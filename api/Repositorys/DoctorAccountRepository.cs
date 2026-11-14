@@ -29,11 +29,7 @@ public class DoctorAccountRepository : IDoctorAccountRepository
 
         await _collection.InsertOneAsync(userInput, null, cancellationToken);
 
-        LoggedInDto loggedInDto = new LoggedInDto(
-            FirstName: userInput.Information.FirstName,
-            LastName: userInput.Information.LastName,
-            Gender: userInput.Information.Gender
-        );
+        LoggedInDto loggedInDto = Mappers.ConvertAppDoctorToLoggedInDto(userInput);
 
         return loggedInDto;
     }
@@ -53,11 +49,7 @@ public class DoctorAccountRepository : IDoctorAccountRepository
             return null;
         }
 
-        LoggedInDto loggedInDto = new LoggedInDto(
-            FirstName: appDoctor.Information.FirstName,
-            LastName: appDoctor.Information.LastName,
-            Gender: appDoctor.Information.Gender
-        );
+        LoggedInDto loggedInDto = Mappers.ConvertAppDoctorToLoggedInDto(appDoctor);
 
         return loggedInDto;
     }

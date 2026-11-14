@@ -40,21 +40,7 @@ public class UserMemberRepository : IUserMemberRepository
             return null;
         }
 
-        MemberDto memberDto = new MemberDto(
-            FirstName: appUser.Information.FirstName,
-            LastName: appUser.Information.LastName,
-            Gender: appUser.Information.Gender,
-            PhoneNumber: appUser.Information.PhoneNumber,
-            BirthDate: appUser.BirthDate,
-            BloodGroup: appUser.BloodGroup,
-            Address: new AddressDto(
-                City: appUser.Address.City,
-                Street: appUser.Address.Street,
-                Alley: appUser.Address.Alley,
-                Plaque: appUser.Address.Plaque,
-                Unit: appUser.Address.Unit
-            )
-        );
+        MemberDto memberDto = Mappers.ConvertAppUserToMemberDto(appUser);
 
         return memberDto;
     }

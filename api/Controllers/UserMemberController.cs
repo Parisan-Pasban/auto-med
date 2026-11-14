@@ -9,7 +9,7 @@ namespace api.Controllers;
 public class UserMemberController(IUserMemberRepository userMemberRepository) : BaseApiController
 {
     [HttpGet("get-all")]
-    public async Task<ActionResult<List<LoggedInDto>>> GetAllUser(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<MemberDto>>> GetAllUser(CancellationToken cancellationToken)
     {
         List<AppUser>? appUsers = await userMemberRepository.GetAllUserAsync(cancellationToken);
 
@@ -18,20 +18,16 @@ public class UserMemberController(IUserMemberRepository userMemberRepository) : 
             return NoContent();
         }
 
-        List<LoggedInDto> loggedInDtos = [];
+        List<MemberDto> memberDtos = [];
 
         foreach (AppUser user in appUsers)
         {
-            LoggedInDto loggedInDto = new LoggedInDto(
-                FirstName: user.Information.FirstName,
-                LastName: user.Information.LastName,
-                Gender: user.Information.Gender
-            );
+            MemberDto memberDto = Mappers.ConvertAppUserToMemberDto(user);
 
-            loggedInDtos.Add(loggedInDto);
+            memberDtos.Add(memberDto);
         }
 
-        return loggedInDtos;
+        return memberDtos;
     }
 
     [HttpGet("get-by-lastname/{userInput}")]

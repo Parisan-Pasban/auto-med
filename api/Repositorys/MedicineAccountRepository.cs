@@ -30,19 +30,7 @@ public class MedicineAccountRepository : IMedicineAccountRepository
 
         await _collection.InsertOneAsync(userInput, null, cancellationToken);
 
-        MedicineInformationDto medicineInformationDto = new MedicineInformationDto(
-            GenericName: userInput.GenericName,
-            BrandName: userInput.BrandName,
-            Form: userInput.Form,
-            Dosage: userInput.Dosage,
-            ManuFacturer: userInput.ManuFacturer,
-            CountryOfOrigin: userInput.CountryOfOrigin,
-            RequiresPrescription: userInput.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: userInput.PharmacyMadicine.Price,
-                Inventory: userInput.PharmacyMadicine.Inventory
-            )
-        );
+        MedicineInformationDto medicineInformationDto = Mappers.ConvertMedicineToMedicineInformationDto(userInput);
 
         return medicineInformationDto;
     }
@@ -68,19 +56,7 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             return null;
         }
 
-        MedicineInformationDto medicineInformationDto = new MedicineInformationDto(
-            GenericName: medicine.GenericName,
-            BrandName: medicine.BrandName,
-            Form: medicine.Form,
-            Dosage: medicine.Dosage,
-            ManuFacturer: medicine.ManuFacturer,
-            CountryOfOrigin: medicine.CountryOfOrigin,
-            RequiresPrescription: medicine.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: medicine.PharmacyMadicine.Price,
-                Inventory: medicine.PharmacyMadicine.Inventory
-            )
-        );
+        MedicineInformationDto medicineInformationDto = Mappers.ConvertMedicineToMedicineInformationDto(medicine);
 
         return medicineInformationDto;
     }
@@ -94,19 +70,7 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             return null;
         }
 
-        MedicineInformationDto medicineInformationDto = new MedicineInformationDto(
-            GenericName: medicine.GenericName,
-            BrandName: medicine.BrandName,
-            Form: medicine.Form,
-            Dosage: medicine.Dosage,
-            ManuFacturer: medicine.ManuFacturer,
-            CountryOfOrigin: medicine.CountryOfOrigin,
-            RequiresPrescription: medicine.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: medicine.PharmacyMadicine.Price,
-                Inventory: medicine.PharmacyMadicine.Inventory
-            )
-        );
+        MedicineInformationDto medicineInformationDto = Mappers.ConvertMedicineToMedicineInformationDto(medicine);
 
         return medicineInformationDto;
     }
@@ -139,20 +103,8 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             return null;
         }
 
+        MedicineInformationDto medicineInformationDto = Mappers.ConvertMedicineToMedicineInformationDto(medicine);
 
-        MedicineInformationDto medicineInformationDto = new MedicineInformationDto(
-            GenericName: medicine.GenericName,
-            BrandName: medicine.BrandName,
-            Form: medicine.Form,
-            Dosage: medicine.Dosage,
-            ManuFacturer: medicine.ManuFacturer,
-            CountryOfOrigin: medicine.CountryOfOrigin,
-            RequiresPrescription: medicine.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: medicine.PharmacyMadicine.Price,
-                Inventory: medicine.PharmacyMadicine.Inventory
-            )
-        );
 
         return medicineInformationDto;
     }

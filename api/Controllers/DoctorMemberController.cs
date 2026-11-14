@@ -22,29 +22,12 @@ public class DoctorMemberController(IDoctorMemberRepository doctorMemberReposito
 
         foreach (AppDoctor doctor in appDoctors)
         {
-            DoctorInformationDto doctorInformationDto = new DoctorInformationDto(
-                FirstName: doctor.Information.FirstName,
-                LastName: doctor.Information.LastName,
-                Gender: doctor.Information.Gender,
-                PhoneNumber: doctor.Information.PhoneNumber,
-                Specialty: doctor.Specialty,
-                ClinicName: doctor.ClinicName,
-                ClinicNumber: doctor.ClinicNumber,
-
-                ClinicAddress: new AddressDto
-                (
-                     City: doctor.ClinicAddress.City,
-                    Street: doctor.ClinicAddress.Street,
-                    Alley: doctor.ClinicAddress.Alley,
-                    Plaque: doctor.ClinicAddress.Plaque,
-                    Unit: doctor.ClinicAddress.Unit
-                )
-            );
+            DoctorInformationDto doctorInformationDto = Mappers.ConvertAppDoctorToDoctorInformationDto(doctor, doctor.Information);
 
             doctorInformationDtos.Add(doctorInformationDto);
         }
 
-        return doctorInformationDtos;
+        return Ok(doctorInformationDtos);
     }
 
     [HttpGet("get-by-lastname/{userInput}")]

@@ -31,11 +31,7 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
 
         await _collection.InsertOneAsync(userInput, null, cancellationToken);
 
-        PharmacyLoggedInDto pharmacyLoggedInDto = new PharmacyLoggedInDto
-        (
-            Name: userInput.Name,
-            PharmacistName: userInput.PharmacistName
-        );
+        PharmacyLoggedInDto pharmacyLoggedInDto = Mappers.ConvertPharmacyToPharmacyLoggedInDto(userInput);
 
         return pharmacyLoggedInDto;
     }
@@ -48,10 +44,7 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
             return null;
         }
 
-        PharmacyLoggedInDto pharmacyLoggedInDto = new PharmacyLoggedInDto(
-            Name: pharmacy.Name,
-            PharmacistName: pharmacy.PharmacistName
-        );
+        PharmacyLoggedInDto pharmacyLoggedInDto = Mappers.ConvertPharmacyToPharmacyLoggedInDto(pharmacy);
 
         return pharmacyLoggedInDto;
     }
@@ -77,18 +70,7 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
             return null;
         }
 
-        PharmacyMemberDto pharmacyMemberDto = new PharmacyMemberDto(
-            Name: pharmacy.Name,
-            PharmacistName: pharmacy.PharmacistName,
-            PharmaciNumber: pharmacy.PharmaciNumber,
-            PharmacyAddress: new AddressDto(
-                    City: pharmacy.AddressPharmacy.City,
-                    Street: pharmacy.AddressPharmacy.Street,
-                    Alley: pharmacy.AddressPharmacy.Alley,
-                    Plaque: pharmacy.AddressPharmacy.Plaque,
-                    Unit: pharmacy.AddressPharmacy.Unit
-            )
-        );
+        PharmacyMemberDto pharmacyMemberDto = Mappers.ConvertPharmacyToPharmacyMemberDto(pharmacy);
 
         return pharmacyMemberDto;
     }
@@ -119,18 +101,7 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
             return null;
         }
 
-        PharmacyMemberDto pharmacyMemberDto = new PharmacyMemberDto(
-            Name: pharmacy.Name,
-            PharmacistName: pharmacy.PharmacistName,
-            PharmaciNumber: pharmacy.PharmaciNumber,
-            PharmacyAddress: new AddressDto(
-                    City: pharmacy.AddressPharmacy.City,
-                    Street: pharmacy.AddressPharmacy.Street,
-                    Alley: pharmacy.AddressPharmacy.Alley,
-                    Plaque: pharmacy.AddressPharmacy.Plaque,
-                    Unit: pharmacy.AddressPharmacy.Unit
-            )
-        );
+        PharmacyMemberDto pharmacyMemberDto = Mappers.ConvertPharmacyToPharmacyMemberDto(pharmacy);
 
         return pharmacyMemberDto;
     }

@@ -36,14 +36,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
 
         foreach (Appointment appointment in appointments)
         {
-            AppointmentDto appointmentDto = new AppointmentDto(
-                Date: appointment.Date,
-                StartTime: appointment.StartTime,
-                EndTime: appointment.EndTime,
-                AppointmentDuration: appointment.AppointmentDuration,
-                BreakDuration: appointment.BreakDuration,
-                MaxPatients: appointment.MaxPatients
-            );
+            AppointmentDto appointmentDto = Mappers.ConvertAppointmentToAppointmentDto(appointment);
 
             appointmentDtos.Add(appointmentDto);
         }
@@ -83,7 +76,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     {
         DeleteResult? Result = await appointmentRepository.DeleteById(userId, cancellationToken);
 
-        if(Result is null)
+        if (Result is null)
         {
             return NotFound("Appointment not found");
         }
