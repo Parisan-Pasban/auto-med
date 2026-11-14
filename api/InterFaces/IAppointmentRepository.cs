@@ -14,6 +14,6 @@ public interface IAppointmentRepository
 
     public Task<AppointmentDto?> UpdateAppointmentById(string userId, Appointment userInput, CancellationToken cancellationToken);
 
-    public Task<DeleteResult?> DeleteById(string userid, CancellationToken cancellationToken);
+    public Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken);
 
 }

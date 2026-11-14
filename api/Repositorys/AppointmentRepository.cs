@@ -118,15 +118,15 @@ public class AppointmentRepository : IAppointmentRepository
 
         return appointmentDto;
     }
-    public async Task<DeleteResult?> DeleteById(string userid, CancellationToken cancellationToken)
+    public async Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken)
     {
-        Appointment appointment = await _collection.Find(doc => doc.Id == userid).FirstOrDefaultAsync(cancellationToken);
+        Appointment appointment = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);
 
         if (appointment is null)
         {
             return null;
         }
 
-        return await _collection.DeleteOneAsync(doc => doc.Id == userid, cancellationToken);
+        return await _collection.DeleteOneAsync(doc => doc.Id == userId, cancellationToken);
     }
 }

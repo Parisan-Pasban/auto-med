@@ -79,9 +79,9 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     }
 
     [HttpDelete("delete-by-id/{userid}")]
-    public async Task<ActionResult<DeleteResult>> DeleteById(string userid, CancellationToken cancellationToken)
+    public async Task<ActionResult<DeleteResult>> DeleteById(string userId, CancellationToken cancellationToken)
     {
-        DeleteResult? Result = await appointmentRepository.DeleteById(userid, cancellationToken);
+        DeleteResult? Result = await appointmentRepository.DeleteById(userId, cancellationToken);
 
         if(Result is null)
         {
