@@ -14,3 +14,12 @@ public record Appointment
     int BreakDuration,
     int MaxPatients
 );
+/*
+آیدی دکتر
+تاریخ
+تایم شروغ
+تایم پایان
+مدت زمان ویزیت
+تایم استراحت
+تعداد بیماران
+*/

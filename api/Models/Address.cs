@@ -7,3 +7,10 @@ public record Address(
     string Plaque,
     string Unit
 );
+/*
+شهر
+خیابان
+کوچه
+پلاک
+واحد
+*/

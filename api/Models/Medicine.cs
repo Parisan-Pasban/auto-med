@@ -12,8 +12,7 @@ public record Medicine
     string Dosage,
     string ManuFacturer,
     string CountryOfOrigin,
-    bool RequiresPrescription,
-    PharmacyMadicine PharmacyMadicine
+    bool RequiresPrescription
 );
 /*
 اسم عمومی

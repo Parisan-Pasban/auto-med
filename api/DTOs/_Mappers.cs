@@ -96,11 +96,7 @@ public static class Mappers
             Dosage: medicine.Dosage,
             ManuFacturer: medicine.ManuFacturer,
             CountryOfOrigin: medicine.CountryOfOrigin,
-            RequiresPrescription: medicine.RequiresPrescription,
-            PharmacyMedicine: new PharmacyMedicineDto(
-                Price: medicine.PharmacyMadicine.Price,
-                Inventory: medicine.PharmacyMadicine.Inventory
-            )
+            RequiresPrescription: medicine.RequiresPrescription
         );
     }
 
@@ -113,6 +109,21 @@ public static class Mappers
             AppointmentDuration: appointment.AppointmentDuration,
             BreakDuration: appointment.BreakDuration,
             MaxPatients: appointment.MaxPatients
+        );
+    }
+
+    public static LaboratoryDto ConvertLaboratoryToLaboratoryDto(Laboratory laboratory)
+    {
+        return new(
+            Name: laboratory.Name,
+            AddressLaboratory: new AddressDto(
+                    City: laboratory.AddressLaboratory.City,
+                    Street: laboratory.AddressLaboratory.Street,
+                    Alley: laboratory.AddressLaboratory.Alley,
+                    Plaque: laboratory.AddressLaboratory.Plaque,
+                    Unit: laboratory.AddressLaboratory.Unit
+            ),
+            PhoneNumber: laboratory.PhoneNumber
         );
     }
 }

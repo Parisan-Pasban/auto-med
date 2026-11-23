@@ -2,10 +2,14 @@ namespace api.Models;
 
 public record PharmacyMadicine
 (
-string Price,
-string Inventory
+string PharmacyId,
+string MedicineId,
+decimal Price,
+int Inventory
 );
 /*
+آیدی داروخونه
+آیدی دارو
 قیمت کالا
 موجودی کالا
 */

@@ -10,3 +10,12 @@ public record Information
     string Password,
     string ConfirmPassword
 );
+/*
+نام
+نام خانوادگی
+کدملی
+جنسیت
+شماره تماس
+رمز
+تایید رمز
+*/
