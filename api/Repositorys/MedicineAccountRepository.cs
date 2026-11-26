@@ -84,15 +84,13 @@ public class MedicineAccountRepository : IMedicineAccountRepository
             return null;
         }
 
-        if (medicine.Form == userInput.Form && medicine.Dosage == userInput.Dosage && medicine.PharmacyMadicine.Price == userInput.PharmacyMadicine.Price && medicine.PharmacyMadicine.Inventory == userInput.PharmacyMadicine.Inventory)
+        if (medicine.Form == userInput.Form && medicine.Dosage == userInput.Dosage)
         {
             return null;
         }
 
         UpdateDefinition<Medicine> updateDef = Builders<Medicine>.Update.Set(doc => doc.Form, userInput.Form)
-        .Set(doc => doc.Dosage, userInput.Dosage)
-        .Set(doc => doc.PharmacyMadicine.Price, userInput.PharmacyMadicine.Price)
-        .Set(doc => doc.PharmacyMadicine.Inventory, userInput.PharmacyMadicine.Inventory);
+        .Set(doc => doc.Dosage, userInput.Dosage);
 
         UpdateResult Result = await _collection.UpdateOneAsync(doc => doc.Id == userId, updateDef, null, cancellationToken);
 

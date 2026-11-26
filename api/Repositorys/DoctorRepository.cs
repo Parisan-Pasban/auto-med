@@ -27,12 +27,12 @@ public class DoctorRepository : IDoctorRepository
             return null;
         }
 
-        if (appDoctor.Email == userInput.Email && appDoctor.ClinicAddress == userInput.ClinicAddress && appDoctor.ClinicNumber == userInput.ClinicNumber && appDoctor.ClinicName == userInput.ClinicName)
+        if (appDoctor.Information.Email == userInput.Information.Email && appDoctor.ClinicAddress == userInput.ClinicAddress && appDoctor.ClinicNumber == userInput.ClinicNumber && appDoctor.ClinicName == userInput.ClinicName)
         {
             return null;
         }
 
-        UpdateDefinition<AppDoctor> updateDef = Builders<AppDoctor>.Update.Set(doc => doc.Email, userInput.Email)
+        UpdateDefinition<AppDoctor> updateDef = Builders<AppDoctor>.Update.Set(doc => doc.Information.Email, userInput.Information.Email)
         .Set(doc => doc.ClinicAddress, userInput.ClinicAddress)
         .Set(doc => doc.ClinicNumber, userInput.ClinicNumber)
         .Set(doc => doc.ClinicName, userInput.ClinicName);

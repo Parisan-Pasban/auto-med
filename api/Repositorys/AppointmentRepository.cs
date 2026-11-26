@@ -20,7 +20,7 @@ public class AppointmentRepository : IAppointmentRepository
     }
 
     #endregion
-    public async Task<AppointmentDto?> CreateAppointment(Appointment userInput, CancellationToken cancellationToken)
+    public async Task<AppointmentDto?> CreateAppointmentAsync(Appointment userInput, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.DoctorId == userInput.DoctorId).FirstOrDefaultAsync(cancellationToken);
 
@@ -37,7 +37,7 @@ public class AppointmentRepository : IAppointmentRepository
     }
 
 
-    public async Task<List<Appointment>?> GetAllAppointment(CancellationToken cancellationToken)
+    public async Task<List<Appointment>?> GetAllAppointmentAsync(CancellationToken cancellationToken)
     {
         List<Appointment> appointments = await _collection.Find(new BsonDocument()).ToListAsync(cancellationToken);
 
@@ -49,7 +49,7 @@ public class AppointmentRepository : IAppointmentRepository
         return appointments;
     }
 
-    public async Task<AppointmentDto?> GetByDate(DateTime userInput, CancellationToken cancellationToken)
+    public async Task<AppointmentDto?> GetByDateAsync(DateTime userInput, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.Date == userInput).FirstOrDefaultAsync(cancellationToken);
 
@@ -63,7 +63,7 @@ public class AppointmentRepository : IAppointmentRepository
         return appointmentDto;
     }
 
-    public async Task<AppointmentDto?> UpdateAppointmentById(string userId, Appointment userInput, CancellationToken cancellationToken)
+    public async Task<AppointmentDto?> UpdateAppointmentByIdAsync(string userId, Appointment userInput, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);
 
@@ -97,7 +97,7 @@ public class AppointmentRepository : IAppointmentRepository
 
         return appointmentDto;
     }
-    public async Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken)
+    public async Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);
 

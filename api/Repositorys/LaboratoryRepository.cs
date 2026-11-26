@@ -20,7 +20,7 @@ public class LaboratoryRepository : ILaboratoryRepository
 
 
     #endregion
-    public async Task<LaboratoryDto?> CreateLaboratory(Laboratory userInput, CancellationToken cancellationToken)
+    public async Task<LaboratoryDto?> CreateLaboratoryAsync(Laboratory userInput, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.LicenseNumber == userInput.LicenseNumber).FirstOrDefaultAsync(cancellationToken);
 
@@ -36,7 +36,7 @@ public class LaboratoryRepository : ILaboratoryRepository
         return laboratoryDto;
     }
 
-    public async Task<LaboratoryDto?> LoginLaboratory(LaboratoryLoginDto userInput, CancellationToken cancellationToken)
+    public async Task<LaboratoryDto?> LoginLaboratoryAsync(LaboratoryLoginDto userInput, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.Name == userInput.Name && doc.LicenseNumber == userInput.LicenseNumber && doc.Password == userInput.Password).FirstOrDefaultAsync(cancellationToken);
 
@@ -50,7 +50,7 @@ public class LaboratoryRepository : ILaboratoryRepository
         return laboratoryDto;
     }
 
-    public async Task<List<Laboratory>?> GetAllLaboratory(CancellationToken cancellationToken)
+    public async Task<List<Laboratory>?> GetAllLaboratoryAsync(CancellationToken cancellationToken)
     {
         List<Laboratory> laboratories = await _collection.Find(new BsonDocument()).ToListAsync(cancellationToken);
 
@@ -62,7 +62,7 @@ public class LaboratoryRepository : ILaboratoryRepository
         return laboratories;
     }
 
-    public async Task<LaboratoryDto?> GetByCity(string userInput, CancellationToken cancellationToken)
+    public async Task<LaboratoryDto?> GetByCityAsync(string userInput, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.AddressLaboratory.City == userInput).FirstOrDefaultAsync(cancellationToken);
 
@@ -76,7 +76,7 @@ public class LaboratoryRepository : ILaboratoryRepository
         return laboratoryDto;
     }
 
-    public async Task<LaboratoryDto?> UpdateById(string userId, Laboratory userInput, CancellationToken cancellationToken)
+    public async Task<LaboratoryDto?> UpdateByIdAsync(string userId, Laboratory userInput, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);
 
@@ -106,7 +106,8 @@ public class LaboratoryRepository : ILaboratoryRepository
 
         return laboratoryDto;
     }
-    public async Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken)
+    
+    public async Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);
 

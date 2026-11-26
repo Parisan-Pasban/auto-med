@@ -6,14 +6,9 @@ namespace api.InterFaces;
 
 public interface IAppointmentRepository
 {
-    public Task<AppointmentDto?> CreateAppointment(Appointment userInput, CancellationToken cancellationToken);
-
-    public Task<List<Appointment>?> GetAllAppointment(CancellationToken cancellationToken);
-
-    public Task<AppointmentDto?> GetByDate(DateTime userInput, CancellationToken cancellationToken);
-
-    public Task<AppointmentDto?> UpdateAppointmentById(string userId, Appointment userInput, CancellationToken cancellationToken);
-
-    public Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken);
-
+    public Task<AppointmentDto?> CreateAppointmentAsync(Appointment userInput, CancellationToken cancellationToken);
+    public Task<List<Appointment>?> GetAllAppointmentAsync(CancellationToken cancellationToken);
+    public Task<AppointmentDto?> GetByDateAsync(DateTime userInput, CancellationToken cancellationToken);
+    public Task<AppointmentDto?> UpdateAppointmentByIdAsync(string userId, Appointment userInput, CancellationToken cancellationToken);
+    public Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken);
 }

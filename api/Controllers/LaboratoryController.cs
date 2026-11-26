@@ -3,7 +3,6 @@ using api.DTOs;
 using api.InterFaces;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using MongoDB.Driver;
 
 namespace api.Controllers;
@@ -13,7 +12,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpPost("create")]
     public async Task<ActionResult<LaboratoryDto>> CreateLaboratory(Laboratory userInput, CancellationToken cancellationToken)
     {
-        LaboratoryDto? laboratoryDto = await laboratoryRepository.CreateLaboratory(userInput, cancellationToken);
+        LaboratoryDto? laboratoryDto = await laboratoryRepository.CreateLaboratoryAsync(userInput, cancellationToken);
 
         if (laboratoryDto is null)
         {
@@ -26,7 +25,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpPost("login")]
     public async Task<ActionResult<LaboratoryDto>> LoginLaboratory(LaboratoryLoginDto userInput, CancellationToken cancellationToken)
     {
-        LaboratoryDto? laboratoryDto = await laboratoryRepository.LoginLaboratory(userInput, cancellationToken);
+        LaboratoryDto? laboratoryDto = await laboratoryRepository.LoginLaboratoryAsync(userInput, cancellationToken);
 
         if (laboratoryDto is null)
         {
@@ -39,7 +38,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpGet("get-all")]
     public async Task<ActionResult<List<LaboratoryDto>>> GetAllLaboratory(CancellationToken cancellationToken)
     {
-        List<Laboratory>? laboratories = await laboratoryRepository.GetAllLaboratory(cancellationToken);
+        List<Laboratory>? laboratories = await laboratoryRepository.GetAllLaboratoryAsync(cancellationToken);
 
         if (laboratories is null)
         {
@@ -61,7 +60,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpGet("get-by-city/(userInput)")]
     public async Task<ActionResult<LaboratoryDto>> GetByCity(string userInput, CancellationToken cancellationToken)
     {
-        LaboratoryDto? laboratoryDto = await laboratoryRepository.GetByCity(userInput, cancellationToken);
+        LaboratoryDto? laboratoryDto = await laboratoryRepository.GetByCityAsync(userInput, cancellationToken);
 
         if (laboratoryDto is null)
         {
@@ -74,7 +73,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpPut("update-by-id/{userId}")]
     public async Task<ActionResult<LaboratoryDto>> UpdateById(string userId, Laboratory userInput, CancellationToken cancellationToken)
     {
-        LaboratoryDto? laboratoryDto = await laboratoryRepository.UpdateById(userId, userInput, cancellationToken);
+        LaboratoryDto? laboratoryDto = await laboratoryRepository.UpdateByIdAsync(userId, userInput, cancellationToken);
 
         if (laboratoryDto is null)
         {
@@ -87,7 +86,7 @@ public class LaboratoryController(ILaboratoryRepository laboratoryRepository) : 
     [HttpDelete("delete-by-id/(userId)")]
     public async Task<ActionResult<DeleteResult>> DeleteById(string userId, CancellationToken cancellationToken)
     {
-        DeleteResult? result = await laboratoryRepository.DeleteById(userId, cancellationToken);
+        DeleteResult? result = await laboratoryRepository.DeleteByIdAsync(userId, cancellationToken);
 
         if (result is null)
         {

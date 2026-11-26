@@ -6,10 +6,10 @@ namespace api.InterFaces;
 
 public interface ILaboratoryRepository
 {
-    public Task<LaboratoryDto?> CreateLaboratory(Laboratory userInput, CancellationToken cancellationToken);
-    public Task<LaboratoryDto?> LoginLaboratory(LaboratoryLoginDto userInput, CancellationToken cancellationToken);
-    public Task<List<Laboratory>?> GetAllLaboratory(CancellationToken cancellationToken1);
-    public Task<LaboratoryDto?> GetByCity(string userInput, CancellationToken cancellationToken);
-    public Task<LaboratoryDto?> UpdateById(string userId, Laboratory userInput, CancellationToken cancellationToken);
-    public Task<DeleteResult?> DeleteById(string userId, CancellationToken cancellationToken);
+    public Task<LaboratoryDto?> CreateLaboratoryAsync(Laboratory userInput, CancellationToken cancellationToken);
+    public Task<LaboratoryDto?> LoginLaboratoryAsync(LaboratoryLoginDto userInput, CancellationToken cancellationToken);
+    public Task<List<Laboratory>?> GetAllLaboratoryAsync(CancellationToken cancellationToken1);
+    public Task<LaboratoryDto?> GetByCityAsync(string userInput, CancellationToken cancellationToken);
+    public Task<LaboratoryDto?> UpdateByIdAsync(string userId, Laboratory userInput, CancellationToken cancellationToken);
+    public Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken);
 }

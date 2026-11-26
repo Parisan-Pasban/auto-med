@@ -8,5 +8,4 @@ namespace api.InterFaces;
         public Task<LoggedInDto?> RegisterUserAsync(AppUser userInput, CancellationToken cancellationToken);
         public Task<LoggedInDto?> LoginUserAsync(LoginDto userInput, CancellationToken cancellationToken);
         public Task<DeleteResult?> DeleteUserByIdAsync(string userId, CancellationToken cancellationToken);
-
     }

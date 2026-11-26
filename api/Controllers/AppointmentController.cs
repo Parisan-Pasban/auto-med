@@ -12,7 +12,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     [HttpPost("create")]
     public async Task<ActionResult<AppointmentDto>> CreateAppointment(Appointment userInput, CancellationToken cancellationToken)
     {
-        AppointmentDto? appointmentDto = await appointmentRepository.CreateAppointment(userInput, cancellationToken);
+        AppointmentDto? appointmentDto = await appointmentRepository.CreateAppointmentAsync(userInput, cancellationToken);
 
         if (appointmentDto is null)
         {
@@ -25,7 +25,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     [HttpGet("get-all")]
     public async Task<ActionResult<List<AppointmentDto>>> GetAllAppointment(CancellationToken cancellationToken)
     {
-        List<Appointment>? appointments = await appointmentRepository.GetAllAppointment(cancellationToken);
+        List<Appointment>? appointments = await appointmentRepository.GetAllAppointmentAsync(cancellationToken);
 
         if (appointments is null)
         {
@@ -48,7 +48,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     public async Task<ActionResult<AppointmentDto>> GetByDate(DateTime userInput, CancellationToken cancellationToken)
     {
 
-        AppointmentDto? appointmentDto = await appointmentRepository.GetByDate(userInput, cancellationToken);
+        AppointmentDto? appointmentDto = await appointmentRepository.GetByDateAsync(userInput, cancellationToken);
 
         if (appointmentDto is null)
         {
@@ -61,7 +61,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     [HttpPut("update-by-id/{userId}")]
     public async Task<ActionResult<AppointmentDto>> UpdateAppointmentById(string userId, Appointment userInput, CancellationToken cancellationToken)
     {
-        AppointmentDto? appointmentDto = await appointmentRepository.UpdateAppointmentById(userId, userInput, cancellationToken);
+        AppointmentDto? appointmentDto = await appointmentRepository.UpdateAppointmentByIdAsync(userId, userInput, cancellationToken);
 
         if (appointmentDto is null)
         {
@@ -74,7 +74,7 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
     [HttpDelete("delete-by-id/{userid}")]
     public async Task<ActionResult<DeleteResult>> DeleteById(string userId, CancellationToken cancellationToken)
     {
-        DeleteResult? Result = await appointmentRepository.DeleteById(userId, cancellationToken);
+        DeleteResult? Result = await appointmentRepository.DeleteByIdAsync(userId, cancellationToken);
 
         if (Result is null)
         {
@@ -83,5 +83,4 @@ public class AppointmentController(IAppointmentRepository appointmentRepository)
 
         return Result;
     }
-
 }
