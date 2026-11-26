@@ -6,7 +6,6 @@ namespace api.Models;
 public record AppDoctor(
     [property: BsonId, BsonRepresentation(BsonType.ObjectId)] string? Id,
     Information Information,
-    string Email,
     string MedicalLicenseNumber,
     string Specialty,
     int YearsOfExperience,

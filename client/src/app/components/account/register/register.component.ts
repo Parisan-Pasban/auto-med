@@ -33,6 +33,7 @@ export class RegisterComponent {
   // #region registerFg
   registerFg = this.fB.group({
     information: this.fB.group({
+      emailCtrl: [''],
       firstNameCtrl: ['', Validators.required],
       lastNameCtrl: ['', Validators.required],
       nationalCodeCtrl: '',
@@ -51,6 +52,10 @@ export class RegisterComponent {
     birthDateCtrl:'',
     bloodGroupCtrl: ''
   });
+
+  get EmailCtrl(): FormControl {
+    return this.registerFg.get('information.emailCtrl') as FormControl;
+  }
 
   get FirstNameCtrl(): FormControl {
     return this.registerFg.get('information.firstNameCtrl') as FormControl;
@@ -112,6 +117,7 @@ export class RegisterComponent {
   register(): void {
     let appUser: AppUser = {
       information: {
+        email: this.EmailCtrl.value,
         firstName: this.FirstNameCtrl.value,
         lastName: this.LastNameCtrl.value,
         nationalCode: this.NationalCodeCtrl.value,

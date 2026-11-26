@@ -3,7 +3,6 @@ import { Information } from "./information.model";
 
 export interface AppDoctor {
     information: Information;
-    email: string,
     medicalLicenseNumber: string,
     specialty: string,
     yearsOfExperience: number,

@@ -1,5 +1,6 @@
 using api.InterFaces;
 using api.Repositorys;
+using api.Services;
 
 namespace api.Extensions;
 
@@ -17,6 +18,7 @@ public static class RepositoryServiceExtensions
         services.AddScoped<IMedicineAccountRepository, MedicineAccountRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         services.AddScoped<ILaboratoryRepository, LaboratoryRepository>();
+        services.AddScoped<ITokenService, TokenService>();
 
         return services;
     }

@@ -2,6 +2,7 @@ namespace api.Models;
 
 public record Information
 (
+    string Email,
     string FirstName,
     string LastName,
     string NationalCode,
@@ -11,6 +12,7 @@ public record Information
     string ConfirmPassword
 );
 /*
+ایمیل 
 نام
 نام خانوادگی
 کدملی

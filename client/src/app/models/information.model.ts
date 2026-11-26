@@ -1,4 +1,5 @@
 export interface Information {
+    email: string,
     firstName: string,
     lastName: string,
     nationalCode: string,
