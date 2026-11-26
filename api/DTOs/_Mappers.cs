@@ -126,4 +126,13 @@ public static class Mappers
             PhoneNumber: laboratory.PhoneNumber
         );
     }
+
+    public static LabTestDto ConvertLabTestToLabTestDto(LabTest labTest)
+    {
+        return new(
+            Name: labTest.Name,
+            Description: labTest.Description,
+            Price: labTest.Price
+        );
+    }
 }
