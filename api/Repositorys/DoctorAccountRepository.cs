@@ -18,6 +18,7 @@ public class DoctorAccountRepository : IDoctorAccountRepository
         _collection = dbName.GetCollection<AppDoctor>("doctors");
     }
     #endregion
+    
     public async Task<LoggedInDto?> RegisterDoctorAsync(AppDoctor userInput, CancellationToken cancellationToken)
     {
         AppDoctor appDoctor = await _collection.Find(doc => doc.Information.NationalCode == userInput.Information.NationalCode).FirstOrDefaultAsync(cancellationToken);

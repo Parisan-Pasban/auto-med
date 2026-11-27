@@ -18,8 +18,8 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<Pharmacy>("pharmacys");
     }
-
     #endregion
+
     public async Task<PharmacyLoggedInDto?> RegisterPharmacyAsync(Pharmacy userInput, CancellationToken cancellationToken)
     {
         Pharmacy pharmacy = await _collection.Find(doc => doc.LicenseNumber == userInput.LicenseNumber).FirstOrDefaultAsync(cancellationToken);
@@ -35,6 +35,7 @@ public class PharmacyAccountRepository : IPharmacyAccountRepository
 
         return pharmacyLoggedInDto;
     }
+
     public async Task<PharmacyLoggedInDto?> LoginPharmacyAsync(PharmacyLoginDtp userInput, CancellationToken cancellationToken)
     {
         Pharmacy pharmacy = await _collection.Find(doc => doc.Name == userInput.Name && doc.LicenseNumber == userInput.LicenseNumber && doc.Password == userInput.Password).FirstOrDefaultAsync(cancellationToken);

@@ -19,6 +19,7 @@ public class UserMemberRepository : IUserMemberRepository
         _collection = dbName.GetCollection<AppUser>("users");
     }
     #endregion
+    
     public async Task<List<AppUser>?> GetAllUserAsync(CancellationToken cancellationToken)
     {
         List<AppUser> appUsers = await _collection.Find(new BsonDocument()).ToListAsync(cancellationToken);

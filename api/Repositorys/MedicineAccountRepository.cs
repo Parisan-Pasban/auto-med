@@ -19,6 +19,7 @@ public class MedicineAccountRepository : IMedicineAccountRepository
         _collection = dbName.GetCollection<Medicine>("medicines");
     }
     #endregion
+    
     public async Task<MedicineInformationDto?> RegisterMedicineAsync(Medicine userInput, CancellationToken cancellationToken)
     {
         Medicine medicine = await _collection.Find(doc => doc.GenericName == userInput.GenericName).FirstOrDefaultAsync(cancellationToken);

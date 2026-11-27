@@ -19,6 +19,7 @@ public class DoctorMemberRepository : IDoctorMemberRepository
         _collection = dbName.GetCollection<AppDoctor>("doctors");
     }
     #endregion
+    
     public async Task<List<AppDoctor>?> GetAllDoctorAsync(CancellationToken cancellationToken)
     {
         List<AppDoctor> appDoctors = await _collection.Find(new BsonDocument()).ToListAsync(cancellationToken);

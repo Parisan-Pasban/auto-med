@@ -18,8 +18,8 @@ public class AppointmentRepository : IAppointmentRepository
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<Appointment>("Appointment");
     }
-
     #endregion
+
     public async Task<AppointmentDto?> CreateAppointmentAsync(Appointment userInput, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.DoctorId == userInput.DoctorId).FirstOrDefaultAsync(cancellationToken);
@@ -35,7 +35,6 @@ public class AppointmentRepository : IAppointmentRepository
 
         return appointmentDto;
     }
-
 
     public async Task<List<Appointment>?> GetAllAppointmentAsync(CancellationToken cancellationToken)
     {
@@ -97,6 +96,7 @@ public class AppointmentRepository : IAppointmentRepository
 
         return appointmentDto;
     }
+
     public async Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken)
     {
         Appointment appointment = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);

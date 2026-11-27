@@ -18,8 +18,8 @@ public class LabTestRepository : ILabTestRepository
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<LabTest>("Tests");
     }
-
     #endregion
+
     public async Task<LabTestDto?> CreateTestAsync(LabTest userInput, CancellationToken cancellationToken)
     {
         LabTest labTest = await _collection.Find(doc => doc.LaboratoryId == userInput.LaboratoryId).FirstOrDefaultAsync(cancellationToken);
@@ -35,7 +35,6 @@ public class LabTestRepository : ILabTestRepository
 
         return labTestDto;
     }
-
 
     public async Task<List<LabTest>?> GetAllTestAsync(CancellationToken cancellationToken)
     {
@@ -94,6 +93,7 @@ public class LabTestRepository : ILabTestRepository
 
         return labTestDto;
     }
+
     public async Task<DeleteResult?> DeleteByIdAsync(string userId, CancellationToken cancellationToken)
     {
         LabTest labTest = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);

@@ -18,6 +18,7 @@ public class UserRepository : IUserRepository
         _collection = dbName.GetCollection<AppUser>("users");
     }
     #endregion
+    
     public async Task<MemberDto?> UpdateUserByIdAsync(string userId, AppUser userInput, CancellationToken cancellationToken)
     {
         AppUser appUser = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);

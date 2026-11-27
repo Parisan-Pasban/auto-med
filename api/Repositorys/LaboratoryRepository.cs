@@ -17,9 +17,8 @@ public class LaboratoryRepository : ILaboratoryRepository
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<Laboratory>("Laboratories");
     }
-
-
     #endregion
+
     public async Task<LaboratoryDto?> CreateLaboratoryAsync(Laboratory userInput, CancellationToken cancellationToken)
     {
         Laboratory laboratory = await _collection.Find(doc => doc.LicenseNumber == userInput.LicenseNumber).FirstOrDefaultAsync(cancellationToken);

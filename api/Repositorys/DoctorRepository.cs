@@ -16,8 +16,8 @@ public class DoctorRepository : IDoctorRepository
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<AppDoctor>("doctors");
     }
-
     #endregion
+    
     public async Task<DoctorInformationDto?> UpdateDoctorByIdAsync(string userId, AppDoctor userInput, CancellationToken cancellationToken)
     {
         AppDoctor appDoctor = await _collection.Find(doc => doc.Id == userId).FirstOrDefaultAsync(cancellationToken);

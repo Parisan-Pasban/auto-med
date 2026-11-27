@@ -18,7 +18,7 @@ public class UserAccountRepository : IUserAcountRepository
         _collection = dbName.GetCollection<AppUser>("users");
     }
     #endregion
-
+    
     public async Task<LoggedInDto?> RegisterUserAsync(AppUser userInput, CancellationToken cancellationToken)
     {
         AppUser appUser = await _collection.Find(doc => doc.Information.NationalCode == userInput.Information.NationalCode).FirstOrDefaultAsync(cancellationToken);
@@ -34,6 +34,7 @@ public class UserAccountRepository : IUserAcountRepository
 
         return loggedInDto;
     }
+
     public async Task<LoggedInDto?> LoginUserAsync(LoginDto userInput, CancellationToken cancellationToken)
     {
         AppUser appUser = await _collection.Find(
