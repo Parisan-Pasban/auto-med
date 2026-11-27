@@ -19,6 +19,7 @@ public static class RepositoryServiceExtensions
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         services.AddScoped<ILaboratoryRepository, LaboratoryRepository>();
         services.AddScoped<ILabTestRepository, LabTestRepository>();
+        services.AddScoped<IPharmacyMadicineRepository, PharmacyMadicineRepository>();
         services.AddScoped<ITokenService, TokenService>();
 
         return services;

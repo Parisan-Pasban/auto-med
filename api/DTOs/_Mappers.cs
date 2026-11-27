@@ -135,4 +135,12 @@ public static class Mappers
             Price: labTest.Price
         );
     }
+
+    public static PharmacyMadicineDto ConvertPharmacyMedicineToPharmacyMedicineDto(PharmacyMadicine pharmacyMedicine)
+    {
+        return new(
+            Price: pharmacyMedicine.Price,
+            Inventory:pharmacyMedicine.Inventory
+        );
+    }
 }
